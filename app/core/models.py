@@ -3,7 +3,7 @@ Databse models.
 """
 
 
-from django.db import models # noqa
+from django.db import models  # noqa
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -12,7 +12,7 @@ from django.contrib.auth.models import (
 
 
 class UserManager(BaseUserManager):
-    """ Manager for users. """
+    """Manager for users."""
 
     def create_user(self, email, password=None, **extra_fields):
         user = self.model(
@@ -37,10 +37,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """ User in the system. """
+    """User in the system."""
+
     email = models.EmailField(
-        max_length = 255,
-        unique = True,
+        max_length=255,
+        unique=True,
     )
     name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
@@ -48,5 +49,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
-
+    USERNAME_FIELD = "email"
