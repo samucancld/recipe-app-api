@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         # _db es por si cambias de db
         user.save(using=self._db)
+        user.save()
 
         return user
 
