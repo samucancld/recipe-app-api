@@ -1,5 +1,5 @@
 """
-
+Main URLs for the project
 """
 
 from drf_spectacular.views import (
