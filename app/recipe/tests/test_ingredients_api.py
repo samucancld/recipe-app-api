@@ -2,8 +2,6 @@
 Tests for ingredients APIs.
 """
 
-from decimal import Decimal
-
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse
@@ -11,16 +9,18 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from core.models import Recipe, Tag, Ingredient
+from core.models import Ingredient
 
 from recipe.serializers import IngredientSerializer
 
 
 INGREDIENTS_URL = reverse("recipe:ingredient-list")
 
+
 def detail_url(ingredient_id):
     """Create and return an ingredient detail URL."""
     return reverse("recipe:ingredient-detail", args=[ingredient_id])
+
 
 def create_ingredient(user, **params):
     """Create and return a sample recipe"""
@@ -47,8 +47,6 @@ def create_user(
     return get_user_model().objects.create_user(email, password)
 
 
-
-
 class PublicIngredientsAPITest(TestCase):
     """Test unauthenticated API requests."""
 
@@ -64,8 +62,10 @@ class PublicIngredientsAPITest(TestCase):
             status.HTTP_401_UNAUTHORIZED,
         )
 
+
 class PrivateIngredientsAPITest(TestCase):
     """Test authenticated API requests"""
+
     def setUp(self):
         self.user = create_user()
         self.client = APIClient()

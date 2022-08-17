@@ -329,8 +329,6 @@ class PrivateRecipeAPITest(TestCase):
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(recipe.tags.count(), 0)
 
-
-        ################# INGREDIENTS ################
     def test_create_recipe_with_new_ingredients(self):
         """Test creating a recipe with new ingredients."""
         payload = {
@@ -338,12 +336,8 @@ class PrivateRecipeAPITest(TestCase):
             "time_minutes": 30,
             "price": Decimal("2.50"),
             "ingredients": [
-                {
-                    "name": "Cauliflower"
-                },
-                {
-                    "name": "Salt"
-                },
+                {"name": "Cauliflower"},
+                {"name": "Salt"},
             ],
         }
 
@@ -416,11 +410,15 @@ class PrivateRecipeAPITest(TestCase):
 
     def test_update_recipe_assign_ingredient(self):
         """Test assigning an existing ingredient when updating a recipe."""
-        ingredient_cheese = Ingredient.objects.create(user=self.user, name="Cheese")
+        ingredient_cheese = Ingredient.objects.create(
+            user=self.user, name="Cheese"
+        )
         recipe = create_recipe(user=self.user)
         recipe.ingredients.add(ingredient_cheese)
 
-        ingredient_lettuce = Ingredient.objects.create(user=self.user, name="Lettuce")
+        ingredient_lettuce = Ingredient.objects.create(
+            user=self.user, name="Lettuce"
+        )
 
         payload = {
             "ingredients": [

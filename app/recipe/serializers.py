@@ -35,7 +35,6 @@ class TagSerializer(serializers.ModelSerializer):
         ]
 
 
-
 class RecipeSerializer(serializers.ModelSerializer):
     """Serializers for recipes."""
 
