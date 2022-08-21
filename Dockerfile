@@ -15,6 +15,8 @@ RUN python -m venv /py && \
     if [ $DEV = "true" ]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
     fi && \
-    rm -rf /tmp
+    rm -rf /tmp && \
+    mkdir -p /vol/web/media && \
+    mkdir -p /vol/web/static
 
 ENV PATH="/py/bin:$PATH"
